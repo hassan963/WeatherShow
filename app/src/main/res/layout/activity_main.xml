@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ashrafulhassan.weathershow.MainActivity">
+
+    <!--<android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#dce8f1">
+
+        <xyz.matteobattilana.library.WeatherView
+            android:id="@+id/weather"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp" />
+
+
+        <ImageView
+            android:id="@+id/weatherstatus"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date: "
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/date"
+            android:text="10.10.2017"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:text="Location: "
+            android:textColor="#fff"
+            android:layout_marginStart="8dp"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dateTextView"
+            android:layout_toEndOf="@+id/location"
+            android:text="Dhaka, BD"
+            android:textColor="#fff"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/weatheverdict"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/weatherstatus"
+            android:layout_alignParentStart="true"
+            android:gravity="center_horizontal"
+            android:text="It's Raining"
+            android:textSize="24sp"
+            android:textColor="#fff"/>
+
+
+        <ScrollView
+            android:layout_below="@+id/weatheverdict"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_below="@id/weatherstatus"
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tempTitle"
+                            android:text="Temperature"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="24sp"/>
+
+                        <TextView
+                            android:id="@+id/temp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/tempTitle"
+                            android:text="Temperature" />
+
+
+                        <TextView
+                            android:id="@+id/tempTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/tempTitle"
+                            android:text="23" />
+
+                        <TextView
+                            android:id="@+id/max"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/minTextView"
+                            android:layout_alignParentStart="true"
+                            android:text="MAX: " />
+
+                        <TextView
+                            android:id="@+id/maxTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/tempTextView"
+                            android:text="24" />
+
+                        <TextView
+                            android:id="@+id/min"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/minTextView"
+                            android:layout_alignBottom="@+id/minTextView"
+                            android:layout_alignParentStart="true"
+                            android:text="MIN: " />
+
+                        <TextView
+                            android:id="@+id/minTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/maxTextView"
+                            android:text="20" />
+
+
+
+                        <TextView
+                            android:id="@+id/windTitle"
+                            android:text="Wind"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/min"
+                            android:gravity="center"
+                            android:textSize="24sp"/>
+
+                        <TextView
+                            android:id="@+id/speed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/windTitle"
+                            android:text="Wind Speed: " />
+
+                        <TextView
+                            android:id="@+id/speedTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/windTitle"
+                            android:text="4" />
+
+                        <TextView
+                            android:id="@+id/humidity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/speed"
+                            android:text="Humidity: " />
+
+                        <TextView
+                            android:id="@+id/humidityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/humidity"
+                            android:layout_alignBottom="@+id/humidity"
+                            android:layout_alignParentEnd="true"
+                            android:text="6" />
+
+                        <TextView
+                            android:id="@+id/degree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/humidity"
+                            android:text="Degree: " />
+
+                        <TextView
+                            android:id="@+id/degreeTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/degree"
+                            android:layout_alignBottom="@+id/degree"
+                            android:layout_alignParentEnd="true"
+                            android:text="7" />
+                        <TextView
+                            android:id="@+id/sun"
+                            android:text="SUN"
+                            android:textSize="24sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_below="@id/degree"/>
+
+                        <TextView
+                            android:id="@+id/sunrise"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/sun"
+                            android:text="Sun Rise: " />
+
+                        <TextView
+                            android:id="@+id/sunriseTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/sun"
+                            android:text="4.30" />
+                        <TextView
+                            android:id="@+id/sunset"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/sunrise"
+                            android:text="Sun Set: " />
+
+                        <TextView
+                            android:id="@+id/sunsetTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/sunrise"
+                            android:text="5.00" />
+
+
+
+                    </RelativeLayout>
+
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="S\nU\nN\nN\nY"
+                    android:textSize="34sp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,38 @@
+api.openweathermap.org/data/2.5/weather?q=dhaka,bd&appid=9dac7b94c9a58fbaa38193d360fcaf39
+
+
+http://api.openweathermap.org/data/2.5/weather?q=dhaka,bd&APPID=9dac7b94c9a58fbaa38193d360fcaf39
+
+http://samples.openweathermap.org/data/2.5/forecast/daily?q=M%C3%BCnchen,DE&appid=9dac7b94c9a58fbaa38193d360fcaf39
+
+
+
+http://api.openweathermap.org/data/2.5/find?lat=21.465895&lon=91.955731&appid=1efc0fc4375a4a874205759effcc7e36
+
+http://api.openweathermap.org/data/2.5/weather?q=dhaka,bd&appid=1efc0fc4375a4a874205759effcc7e36
+
+http://api.openweathermap.org/data/2.5/weather?q=dhaka,bd&units=metric&appid=1efc0fc4375a4a874205759effcc7e36
+
+Barishal  Barisal
+Chattogram  Chittagong
+Khulna
+Mymensingh
+Rajshahi
+Rangpur
+Sylhet
+
+main: Clear
+description : clear sky
+temp: 
+pressure
+humidity
+temp_min
+temp_max
+speed
+deg
+
+sunrise
+sunset
+name
+
+°
