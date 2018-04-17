@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private String main, description, temp, pressure, humidity, temp_min, temp_max, speed, deg, sunrise, sunset;
     private FloatingActionButton menu1, menu2;
     private FloatingActionMenu floatingActionMenu;
+    private WeatherView mWeatherView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +55,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);*/
         floatingActionMenu = findViewById(R.id.menu);
 
-        WeatherView mWeatherView = findViewById(R.id.weather);
-        mWeatherView.setWeather(WeatherView.weatherStatus.RAIN);
-        mWeatherView.startAnimation();
+        mWeatherView = findViewById(R.id.weather);
 
         ImageView weatherstatus = findViewById(R.id.weatherstatus);
         dateTextView = findViewById(R.id.dateTextView);
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         dateTextView.setText(date);
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.rainning).centerCrop()
+                .load(R.drawable.weathernew).centerCrop()
                 .into(weatherstatus);
 
 
@@ -154,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -175,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     public static String convertMillis(long milliseconds){
 
@@ -244,6 +243,19 @@ public class MainActivity extends AppCompatActivity {
                     sunriseTextView.setText(sunrise);
                     sunsetTextView.setText(sunset);
                     status.setText(mainString);
+
+
+                    for (int i = 0; i<description.length(); i++){
+                        if (description.charAt(i) == 'r'){
+                            if (i<description.length() && description.charAt(i+1) == 'a'){
+                                mWeatherView.setWeather(WeatherView.weatherStatus.RAIN);
+                                mWeatherView.startAnimation();
+                            }
+                        }
+                    }
+
+                    /*mWeatherView.setWeather(WeatherView.weatherStatus.RAIN);
+                    mWeatherView.startAnimation();*/
 
 
                 } catch (JSONException e) {
