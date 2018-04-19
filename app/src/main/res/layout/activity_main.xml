@@ -5,38 +5,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:background="#dce8f1"
     tools:context="com.example.ashrafulhassan.weathershow.MainActivity">
 
-    <!--<android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@laystart_activitymain" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#dce8f1">
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_alignParentStart="true"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:paddingEnd="2dp"
+                android:paddingTop="2dp">
+
+                <RelativeLayout
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/searchButton"
+                    android:focusable="true"
+                    android:background="@drawable/edittextbox"
+                    android:focusableInTouchMode="true">
+
+                    <!--<SearchView
+                        android:id="@+id/search_bar_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toStartOf="@+id/imageView"
+                        android:queryHint="@string/Medicine">
+
+                    </SearchView>-->
+                    <EditText
+                        android:id="@+id/searchEditTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="city name, country code..."
+                        android:paddingStart="8dp"
+                        android:ems="10" />
+
+
+
+                </RelativeLayout>
+
+
+
+
+                <ImageView
+                    android:id="@+id/searchButton"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/ic_search_white_24dp"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
 
         <xyz.matteobattilana.library.WeatherView
             android:id="@+id/weather"
             android:layout_width="wrap_content"
+            android:layout_below="@id/my_toolbar"
             android:layout_height="1dp" />
 
 
         <ImageView
             android:id="@+id/weatherstatus"
             android:layout_width="match_parent"
+            android:layout_below="@id/my_toolbar"
             android:layout_height="250dp" />
 
         <TextView
@@ -44,6 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date: "
+            android:layout_below="@id/my_toolbar"
             android:textSize="18sp"
             android:textColor="#fff"
             android:layout_marginStart="8dp"/>
@@ -52,8 +108,8 @@
             android:id="@+id/dateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/location"
+            android:layout_alignEnd="@+id/timeTextView"
+            android:layout_below="@+id/my_toolbar"
             android:text="00.00.00"
             android:textColor="#fff"
             android:textSize="18sp" />
@@ -117,6 +173,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+
             <LinearLayout
                 android:layout_below="@id/weatherstatus"
                 android:id="@+id/linearLayout2"
@@ -124,7 +182,15 @@
                 android:layout_height="320dp"
                 android:orientation="horizontal"
                 android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:id="@+id/status"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="2"
+                    android:gravity="center" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -304,14 +370,7 @@
                 </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="S\nU\nN\nN\nY"
-                    android:textSize="34sp" />
+
 
             </LinearLayout>
 
@@ -329,7 +388,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />-->
 
-    <com.github.clans.fab.FloatingActionMenu
+    <!--<com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -392,5 +451,5 @@
             />
 
     </com.github.clans.fab.FloatingActionMenu>
-
+-->
 </android.support.design.widget.CoordinatorLayout>

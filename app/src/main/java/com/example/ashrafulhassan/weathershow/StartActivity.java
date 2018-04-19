@@ -32,7 +32,7 @@ public class StartActivity extends AppCompatActivity {
                 .load(R.drawable.inno).asGif()
                 .into(splash);*/
 
-        Glide.with(getApplicationContext()).load(R.drawable.inno)
+        Glide.with(getApplicationContext()).load(R.drawable.innovizz)
                 .fitCenter()
                 .into(splash);
 
