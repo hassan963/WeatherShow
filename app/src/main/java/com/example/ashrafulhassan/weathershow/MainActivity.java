@@ -2,44 +2,34 @@ package com.example.ashrafulhassan.weathershow;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
+import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-
-import com.github.clans.fab.FloatingActionButton;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.ashrafulhassan.weathershow.network.VolleyRequest;
-import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -55,32 +45,30 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import android.text.Selection;
 
 
 import xyz.matteobattilana.library.WeatherView;
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     private TextView dateTextView, locationTextView, weatheverdict, tempTextView, maxTextView,
             minTextView, speedTextView, humidityTextView, degreeTextView, sunriseTextView,
             sunsetTextView, timeTextView;
 
     private String main, description, temp, pressure, humidity, temp_min, temp_max, speed, deg, sunrise, sunset;
-    private FloatingActionButton menu1, menu2;
-    private FloatingActionMenu floatingActionMenu;
+
     private WeatherView mWeatherView;
 
     private EditText searchEditTextView;
-    private GoogleApiClient googleApiClient;
+
+    private String location = "Dhaka";
 
 
     @Override
@@ -93,11 +81,19 @@ public class MainActivity extends AppCompatActivity{
 
         mWeatherView = findViewById(R.id.weather);
 
+        location = getIntent().getStringExtra("location");
+        double lat = getIntent().getDoubleExtra("lat",23.8848663);
+        double lng = getIntent().getDoubleExtra("lng",90.3896801);
+
+        requestVolleyGPS(lat, lng);
+        requestVolleyTimeGPS(lat, lng);
 
         ImageView weatherstatus = findViewById(R.id.weatherstatus);
         dateTextView = findViewById(R.id.dateTextView);
         locationTextView = findViewById(R.id.locationTextView);
-        weatheverdict = findViewById(R.id.weatheverdict);
+
+       // weatheverdict = findViewById(R.id.weatheverdict);
+
         maxTextView = findViewById(R.id.maxTextView);
         tempTextView = findViewById(R.id.tempTextView);
         minTextView = findViewById(R.id.minTextView);
@@ -112,8 +108,6 @@ public class MainActivity extends AppCompatActivity{
         ImageView status = findViewById(R.id.status);
         searchEditTextView = findViewById(R.id.searchEditTextView);
 
-        requestVolleyGPS(1.2,1.3);
-        requestVolleyTimeGPS(1.2,1.3);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,13 +128,17 @@ public class MainActivity extends AppCompatActivity{
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         dateTextView.setText(date);
 
+
         Glide.with(getApplicationContext())
-                .load(R.drawable.weathernew).centerCrop()
+                .load(R.drawable.w).centerCrop()
                 .into(weatherstatus);
 
         Glide.with(getApplicationContext()).load(R.drawable.weatherguy).centerCrop().into(status);
 
+
     }
+
+
 
     public void onBackPressed() {
         Intent a = new Intent(Intent.ACTION_MAIN);
@@ -209,8 +207,10 @@ public class MainActivity extends AppCompatActivity{
                     sunrise = convertMillis(Long.parseLong(sunrise));
                     sunset = convertMillis(Long.parseLong(sunset));
 
-                    locationTextView.setText(cityName);
-                    weatheverdict.setText(description);
+                    locationTextView.setText(location);
+
+                   // weatheverdict.setText(description);
+
                     tempTextView.setText(temp);
                     maxTextView.setText(temp_max);
                     minTextView.setText(temp_min);
@@ -264,12 +264,12 @@ public class MainActivity extends AppCompatActivity{
                     String timestamp = jsonObject.getString("timestamp");
                     String countryName = jsonObject.getString("countryName");
 
-                    Long gmt = Long.parseLong(gmtOffset);
+                    /*Long gmt = Long.parseLong(gmtOffset);
                     Long time = Long.parseLong(timestamp);
                     time = time - gmt;
                     //convertMillis(time);
                     timeTextView.setText(String.valueOf(convertMillis(time)));
-                    //Toast.makeText(MainActivity.this, ""+convertMillis(time), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, ""+convertMillis(time), Toast.LENGTH_SHORT).show();*/
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -320,8 +320,10 @@ public class MainActivity extends AppCompatActivity{
                     sunrise = convertMillis(Long.parseLong(sunrise));
                     sunset = convertMillis(Long.parseLong(sunset));
 
-                    locationTextView.setText("dhaka");
-                    weatheverdict.setText(description);
+                    locationTextView.setText(location);
+
+                   // weatheverdict.setText(description);
+
                     tempTextView.setText(temp);
                     maxTextView.setText(temp_max);
                     minTextView.setText(temp_min);
@@ -394,6 +396,7 @@ public class MainActivity extends AppCompatActivity{
 
         VolleyRequest.getInstance().addToRequestQueue(jsonObjectRequest);
     }
+
 
 
 
